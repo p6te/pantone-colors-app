@@ -122,13 +122,18 @@ export default function CustomPaginationActionsTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
- 
+
   console.log(context.data);
   return (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      sx={{
+        marginTop: "20px",
+      }}
+    >
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
-          <TableRow>
+          <TableRow >
             <TableCell>ID</TableCell>
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Year</TableCell>
@@ -144,17 +149,15 @@ export default function CustomPaginationActionsTable() {
               sx={{
                 border: "none",
                 boxShadow: "none",
+                backgroundColor: row.color,
+            
               }}
             >
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell align="right">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">
-                {row.year}
-              </TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.year}</TableCell>
             </TableRow>
           ))}
 

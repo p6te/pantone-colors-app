@@ -31,7 +31,8 @@ function App() {
 
   return (
     <div className="App">
-      <DataContext.Provider value={{ data, input, handleInput , setCurrentId, currentId }}>
+      <div className="App-container">
+      <DataContext.Provider value={{ data, input, handleInput , setCurrentId, currentId , setInput}}>
         <BrowserRouter>
           <Routes>
             <Route path="/:id" element={<Searcher />}></Route>
@@ -41,6 +42,7 @@ function App() {
           <CustomPaginationActionsTable />
         </BrowserRouter>
       </DataContext.Provider>
+      </div>
     </div>
   );
 }

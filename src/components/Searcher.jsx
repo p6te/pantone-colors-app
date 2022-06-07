@@ -13,8 +13,12 @@ function Searcher() {
     navigate(`/${context.input}`);
   };
 
-  const params = useParams();
+  const resetId = () => {
+    navigate(`/`);
+    context.setInput("");
+  };
 
+  const params = useParams();
 
   useEffect(() => {
     context.setCurrentId(params.id);
@@ -25,6 +29,7 @@ function Searcher() {
       component="form"
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
+        textAlign: "left",
       }}
       noValidate
       autoComplete="off"
@@ -47,6 +52,17 @@ function Searcher() {
         onClick={() => sendId()}
       >
         search
+      </Button>
+      <Button
+        variant="contained"
+        sx={{
+          margin: "none",
+          height: "50px",
+      
+        }}
+        onClick={() => resetId()}
+      >
+        all
       </Button>
     </Box>
   );
