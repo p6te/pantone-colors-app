@@ -116,7 +116,6 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
-  console.log(context.data);
   return (
     <TableContainer
       component={Paper}
@@ -127,9 +126,32 @@ export default function CustomPaginationActionsTable() {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell >ID</TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Year</TableCell>
+            <TableCell
+              sx={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              ID
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              Name
+            </TableCell>
+            <TableCell
+              align="right"
+              sx={{
+                fontSize: 20,
+                fontWeight: "500",
+              }}
+            >
+              Year
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -140,18 +162,37 @@ export default function CustomPaginationActionsTable() {
             <TableRow
               key={row.name}
               sx={{
-                border: "none",
-                boxShadow: "none",
                 backgroundColor: row.color,
-                
               }}
-            
             >
-              <TableCell component="th" scope="row" >
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{
+                  fontSize: 20,
+                  fontWeight: "500",
+                }}
+              >
                 {row.id}
               </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.year}</TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  fontSize: 20,
+                  fontWeight: "500",
+                }}
+              >
+                {row.name}{" "}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  fontSize: 20,
+                  fontWeight: "500",
+                }}
+              >
+                {row.year}
+              </TableCell>
             </TableRow>
           ))}
 
@@ -160,11 +201,27 @@ export default function CustomPaginationActionsTable() {
               <TableCell colSpan={6} />
             </TableRow>
           )}
+
+          {rows.length === 0 ? (
+            <TableRow>
+              <TableCell
+                align="center"
+                colSpan={3}
+                sx={{
+                  fontSize: 20,
+                  fontWeight: "500",
+               
+                }}
+              >
+                There is no color with id {context.currentId}
+              </TableCell>
+            </TableRow>
+          ) : null}
         </TableBody>
         <TableFooter>
           <TableRow>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+              rowsPerPageOptions={[5]}
               colSpan={3}
               count={rows.length}
               rowsPerPage={rowsPerPage}

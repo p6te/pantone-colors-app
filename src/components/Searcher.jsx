@@ -12,14 +12,11 @@ function Searcher() {
 
   let navigate = useNavigate();
 
-
-
   const sendId = () => {
     navigate(`/${context.input}`);
   };
 
   const resetId = () => {
-  
     context.setInput("");
     navigate(`/`);
   };
@@ -48,7 +45,15 @@ function Searcher() {
         label="Search by ID"
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
+            <InputAdornment
+              position="end"
+              sx={{
+                "&:hover": {
+                  transform: "scale(1.2)",
+                  cursor: "pointer",
+                },
+              }}
+            >
               {params.id != null ? (
                 <HighlightOffIcon onClick={() => resetId()} />
               ) : null}
@@ -56,9 +61,7 @@ function Searcher() {
           ),
         }}
         style={{
-          margin: "none",
-          width: 210,
-          height: 60,
+          width: 300,
         }}
         variant="outlined"
         aria-describedby="Search color by ID"
@@ -71,6 +74,9 @@ function Searcher() {
         variant="contained"
         sx={{
           bgcolor: "#292929",
+          "&:hover": {
+            backgroundColor: "#363636",
+          },
         }}
         style={{
           width: 210,
