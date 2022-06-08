@@ -17,13 +17,6 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import DataContext from "../context/DataContext";
-import {
-  useNavigate,
-  Routes,
-  Route,
-  BrowserRouter,
-  useParams,
-} from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -133,8 +126,8 @@ export default function CustomPaginationActionsTable() {
     >
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
-          <TableRow >
-            <TableCell>ID</TableCell>
+          <TableRow>
+            <TableCell >ID</TableCell>
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Year</TableCell>
           </TableRow>
@@ -150,10 +143,11 @@ export default function CustomPaginationActionsTable() {
                 border: "none",
                 boxShadow: "none",
                 backgroundColor: row.color,
-            
+                
               }}
+            
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" >
                 {row.id}
               </TableCell>
               <TableCell align="right">{row.name}</TableCell>

@@ -4,18 +4,24 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DataContext from "../context/DataContext";
 import { useNavigate, useParams } from "react-router-dom";
+import InputAdornment from "@mui/material/InputAdornment";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 function Searcher() {
   let context = useContext(DataContext);
 
   let navigate = useNavigate();
+
+
+
   const sendId = () => {
     navigate(`/${context.input}`);
   };
 
   const resetId = () => {
-    navigate(`/`);
+  
     context.setInput("");
+    navigate(`/`);
   };
 
   const params = useParams();
@@ -30,39 +36,49 @@ function Searcher() {
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
         textAlign: "left",
+        lineHeight: "100%",
+        display: "flex",
+        alignItems: "center",
       }}
       noValidate
       autoComplete="off"
     >
       <TextField
-        inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-        id="outlined-basic"
+        id="input-with-icon-textfield"
         label="Search by ID"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              {params.id != null ? (
+                <HighlightOffIcon onClick={() => resetId()} />
+              ) : null}
+            </InputAdornment>
+          ),
+        }}
+        style={{
+          margin: "none",
+          width: 210,
+          height: 60,
+        }}
         variant="outlined"
+        aria-describedby="Search color by ID"
         value={context.input}
         onChange={context.handleInput}
         onSubmit={() => sendId()}
       />
+
       <Button
         variant="contained"
         sx={{
-          margin: "none",
-          height: "50px",
+          bgcolor: "#292929",
+        }}
+        style={{
+          width: 210,
+          height: 55,
         }}
         onClick={() => sendId()}
       >
         search
-      </Button>
-      <Button
-        variant="contained"
-        sx={{
-          margin: "none",
-          height: "50px",
-      
-        }}
-        onClick={() => resetId()}
-      >
-        all
       </Button>
     </Box>
   );
