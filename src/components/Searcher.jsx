@@ -18,10 +18,27 @@ function Searcher() {
 
   const resetId = () => {
     context.setInput("");
+    context.setCurrentId("");
     navigate(`/`);
   };
 
   const params = useParams();
+
+  const handleNumericInput = (e) => {
+    let input = e.target.value;
+    console.log(input);
+
+    if (input === "") {
+      context.setInput(input);
+    }
+
+    let number = parseInt(input);
+    console.log(number);
+
+    if (Number.isInteger(number)) {
+      context.setInput(number);
+    }
+  };
 
   useEffect(() => {
     context.setCurrentId(params.id);
@@ -32,15 +49,13 @@ function Searcher() {
       component="form"
       sx={{
         "& > :not(style)": { m: 1, width: "25ch" },
-        textAlign: "left",
-        lineHeight: "100%",
         display: "flex",
-        alignItems: "center",
       }}
       noValidate
       autoComplete="off"
     >
       <TextField
+        data-testid="input-item-test"
         id="input-with-icon-textfield"
         label="Search by ID"
         InputProps={{
@@ -53,20 +68,23 @@ function Searcher() {
                   cursor: "pointer",
                 },
               }}
+              aria-label="clear search input"
             >
               {params.id != null ? (
                 <HighlightOffIcon onClick={() => resetId()} />
               ) : null}
             </InputAdornment>
           ),
+          inputMode: "numeric",
+          pattern: "[0-9]*",
         }}
         style={{
           width: 300,
         }}
         variant="outlined"
         aria-describedby="Search color by ID"
-        value={context.input}
-        onChange={context.handleInput}
+        value= {context.input }
+        onChange={handleNumericInput}
         onSubmit={() => sendId()}
       />
 
@@ -83,6 +101,7 @@ function Searcher() {
           height: 55,
         }}
         onClick={() => sendId()}
+        aria-label="search button"
       >
         search
       </Button>

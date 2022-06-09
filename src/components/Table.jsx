@@ -123,7 +123,7 @@ export default function CustomPaginationActionsTable() {
         marginTop: "20px",
       }}
     >
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <Table sx={{ minWidth: 500 }} aria-label="table of pantone colors">
         <TableHead>
           <TableRow>
             <TableCell
@@ -131,6 +131,7 @@ export default function CustomPaginationActionsTable() {
                 fontSize: 20,
                 fontWeight: "500",
               }}
+              aria-label="ID column"
             >
               ID
             </TableCell>
@@ -140,6 +141,7 @@ export default function CustomPaginationActionsTable() {
                 fontSize: 20,
                 fontWeight: "500",
               }}
+              aria-label="name column"
             >
               Name
             </TableCell>
@@ -149,6 +151,7 @@ export default function CustomPaginationActionsTable() {
                 fontSize: 20,
                 fontWeight: "500",
               }}
+              aria-label="year column"
             >
               Year
             </TableCell>
@@ -164,6 +167,7 @@ export default function CustomPaginationActionsTable() {
               sx={{
                 backgroundColor: row.color,
               }}
+             
             >
               <TableCell
                 component="th"
@@ -172,6 +176,7 @@ export default function CustomPaginationActionsTable() {
                   fontSize: 20,
                   fontWeight: "500",
                 }}
+                aria-label={row.id}
               >
                 {row.id}
               </TableCell>
@@ -180,9 +185,11 @@ export default function CustomPaginationActionsTable() {
                 sx={{
                   fontSize: 20,
                   fontWeight: "500",
+                  
                 }}
+                aria-label={row.name}
               >
-                {row.name}{" "}
+                {row.name.toUpperCase()}
               </TableCell>
               <TableCell
                 align="right"
@@ -190,20 +197,19 @@ export default function CustomPaginationActionsTable() {
                   fontSize: 20,
                   fontWeight: "500",
                 }}
+                aria-label={row.year}
               >
                 {row.year}
               </TableCell>
             </TableRow>
           ))}
-
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
             </TableRow>
           )}
-
           {rows.length === 0 ? (
-            <TableRow>
+            <TableRow >
               <TableCell
                 align="center"
                 colSpan={3}
